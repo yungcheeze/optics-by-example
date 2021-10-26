@@ -1,0 +1,40 @@
+name: optics-by-example
+version: 0.0.1.0
+synopsis: Walking along to optics by example book
+description: See README at <https://github.com/yungcheeze/optics-by-example
+author: Ucizi Mafeni
+github: yungcheeze/optics-by-example
+category: Package.Category
+license: BSD-3-Clause
+
+dependencies:
+  - base >=4.11 && < 5
+  - aeson
+  - containers
+  - lens
+  - lens-aeson
+  - mtl
+  - text
+
+library:
+  source-dirs: src
+
+executables:
+  optics-by-example-exe:
+    source-dirs: app
+    main: Main.hs
+    dependencies:
+      - optics-by-example
+
+tests:
+  optics-by-example-test:
+    source-dirs: test
+    main: Spec.hs
+    ghc-options:
+      - -Wall
+      - -threaded
+    dependencies:
+      - optics-by-example
+      - hedgehog
+      - hspec
+      - hspec-discover
