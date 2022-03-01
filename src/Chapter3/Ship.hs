@@ -7,7 +7,7 @@
 {-# LANGUAGE TypeApplications #-}
 {-# LANGUAGE TypeFamilies #-}
 
-module OpticsByExample where
+module Chapter3.Ship (Ship (..), name, numCrew) where
 
 import Control.Applicative
 import Control.Lens
@@ -16,27 +16,11 @@ import qualified Data.Map as M
 import qualified Data.Set as S
 import qualified Data.Text as T
 
-doOpticsByExample :: String
-doOpticsByExample = "OpticsByExample"
-
--- Chapter 3.2
-
--- q5
--- over :: Lens' s a -> (a -> a) -> s
-
--- _2 :: Lens' (a, b) -> a
-
--- (*10) :: Num -> Num
--- (*10) :: Num a => a -> a
-
--- (False, 2) :: (Bool, Num)
-
--- Chapter 3.3
 data Ship = Ship
   { _name :: String,
     _numCrew :: Int
   }
-  deriving (Show)
+  deriving (Show, Eq)
 
 getNumCrew :: Ship -> Int
 getNumCrew = _numCrew
