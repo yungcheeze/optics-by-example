@@ -1,0 +1,43 @@
+{
+  "src/*.hs": {
+    "type": "src",
+    "alternate": "test/{}Spec.hs",
+    "template": [
+      "{open}-# LANGUAGE FlexibleContexts #-{close}",
+      "{open}-# LANGUAGE FlexibleInstances #-{close}",
+      "{open}-# LANGUAGE InstanceSigs #-{close}",
+      "{open}-# LANGUAGE RankNTypes #-{close}",
+      "{open}-# LANGUAGE ScopedTypeVariables #-{close}",
+      "{open}-# LANGUAGE TemplateHaskell #-{close}",
+      "{open}-# LANGUAGE TypeApplications #-{close}",
+      "{open}-# LANGUAGE TypeFamilies #-{close}",
+      "",
+      "module {dot} where",
+      "",
+      "import Control.Applicative",
+      "import Control.Lens",
+      "import Data.Char",
+      "import qualified Data.Map as M",
+      "import qualified Data.Set as S",
+      "import qualified Data.Text as T"
+    ]
+  },
+  "test/*.hs": {
+    "type": "spec",
+    "template": [
+      "module {dot} where",
+      "",
+      "import {dot|rmspec}",
+      "import Control.Applicative",
+      "import Data.Char",
+      "import Test.Hspec",
+      "import Test.QuickCheck",
+      "",
+      "spec :: Spec",
+      "spec = do",
+      "  describe \"spec\" $ do",
+      "    it \"is true\" $",
+      "      True `shouldBe` True"
+    ]
+  }
+}
