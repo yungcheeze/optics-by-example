@@ -22,6 +22,20 @@ source-repository head
 
 library
   exposed-modules:
+      Chapter3.AutoShip
+      Chapter3.IsItALens
+      Chapter3.LensLaws
+      Chapter3.SelfCorrectingLenses
+      Chapter3.Ship
+      Chapter3.VirtualFields
+      Chapter4.ComposingLenses
+      Chapter4.PolymorphicLenses
+      Chapter5.LensOperators
+      Chapter6.CustomFolds
+      Chapter6.FilteringFolds
+      Chapter6.FoldActions
+      Chapter6.FoldsIntro
+      Chapter6.HigherOrderFolds
       OpticsByExample
   other-modules:
       Paths_optics_by_example
@@ -29,8 +43,10 @@ library
       src
   build-depends:
       aeson
+    , approximate-equality
     , base >=4.11 && <5
     , containers
+    , ieee754
     , lens
     , lens-aeson
     , mtl
@@ -45,8 +61,10 @@ executable optics-by-example-exe
       app
   build-depends:
       aeson
+    , approximate-equality
     , base >=4.11 && <5
     , containers
+    , ieee754
     , lens
     , lens-aeson
     , mtl
@@ -58,17 +76,22 @@ test-suite optics-by-example-test
   type: exitcode-stdio-1.0
   main-is: Spec.hs
   other-modules:
+      Chapter3.SelfCorrectingLensesSpec
+      Chapter3.ShipSpec
       Paths_optics_by_example
   hs-source-dirs:
       test
   ghc-options: -Wall -threaded
   build-depends:
-      aeson
+      QuickCheck
+    , aeson
+    , approximate-equality
     , base >=4.11 && <5
     , containers
     , hedgehog
     , hspec
     , hspec-discover
+    , ieee754
     , lens
     , lens-aeson
     , mtl
