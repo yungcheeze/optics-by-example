@@ -1,0 +1,16 @@
+@document.meta
+  title: notes
+  description: 
+  author: ucizi
+  categories: 
+  created: 2021-10-27
+  version: 0.1
+@end
+
+
+* Chapter 3
+  Lenses always have signature
+  @code haskell
+    Lens' s a
+  @end
+  where `s` is structure and `a`  is focus 
