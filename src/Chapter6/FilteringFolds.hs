@@ -52,3 +52,8 @@ deck =
     Card "Spicyeon" Hot False [Move "Capsaicisize" 40],
     Card "Sparkeon" Spark True [Move "Shock" 40, Move "Battery" 50]
   ]
+
+allCardsThatStartWithS = deck ^.. folded . filteredBy (name . filtered ((== 'S') . head))
+
+lowestAttackPowerofallmoves = minimumOf (folded . moves . folded . movePower) deck
+
