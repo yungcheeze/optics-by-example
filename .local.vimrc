@@ -4,5 +4,5 @@ augroup fmt
   autocmd BufWritePre * Neoformat
 augroup END
 
-nnoremap <leader>es <cmd>Esrc<cr>
-nnoremap <leader>et <cmd>Espec<cr>
+nnoremap <leader>es :Esrc<space>
+nnoremap <leader>et :Espec<space>
