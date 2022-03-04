@@ -57,3 +57,25 @@ allCardsThatStartWithS = deck ^.. folded . filteredBy (name . filtered ((== 'S')
 
 lowestAttackPowerofallmoves = minimumOf (folded . moves . folded . movePower) deck
 
+-- DONE: Challenge 1 -- can I create a monoid so I get the card with
+-- lowest attack power in a single pass?
+data Minimum = Minimum
+  { getMinimum :: Maybe Card
+  }
+  deriving (Show)
+
+lowestAttackPower = minimumOf (moves . folded . movePower)
+
+instance Monoid Minimum where
+  mempty = Minimum Nothing
+  mappend m1@(Minimum (Just c1)) m2@(Minimum (Just c2))
+    | lowestAttackPower c1 < lowestAttackPower c2 = m1
+    | otherwise = m2
+  mappend m1@(Minimum (Just c1)) (Minimum Nothing) = m1
+  mappend (Minimum Nothing) m2@(Minimum (Just c2)) = m2
+  mappend _ _ = mempty
+
+instance Semigroup Minimum where
+  (<>) = mappend
+
+cardWithLowestAttackPower = getMinimum $ foldOf (folded . to (Minimum . Just)) deck
