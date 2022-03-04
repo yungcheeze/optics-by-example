@@ -79,3 +79,10 @@ instance Semigroup Minimum where
   (<>) = mappend
 
 cardWithLowestAttackPower = getMinimum $ foldOf (folded . to (Minimum . Just)) deck
+
+-- TODO: Challenge 2 -- Can I make my Minimum monoid generic?
+-- We'll need:
+-- 1. a type
+-- 2. a comparator
+-- 3. make the type opaque
+-- 4. add a getter function
