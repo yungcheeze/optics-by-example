@@ -13,6 +13,7 @@ import Control.Applicative
 import Control.Lens
 import Data.Char
 import qualified Data.Map as M
+import Data.Maybe (isJust)
 import qualified Data.Set as S
 import qualified Data.Text as T
 
@@ -86,3 +87,45 @@ cardWithLowestAttackPower = getMinimum $ foldOf (folded . to (Minimum . Just)) d
 -- 2. a comparator
 -- 3. make the type opaque
 -- 4. add a getter function
+--
+
+hotCardsWithMoreThan30AttackPower =
+  isJust $
+    deck
+      ^? folded
+        . filteredBy (aura . only Hot)
+        . filteredBy (moves . folded . movePower . filtered (> 30))
+
+hotCardsWithMoreThan30AttackPower' =
+  anyOf
+    ( folded
+        . filteredBy (aura . only Hot)
+        . moves
+        . folded
+        . movePower
+    )
+    (> 30)
+    deck
+
+firstCardWithMoreThanOneMove =
+  head $
+    deck
+      ^.. folded
+        . filteredBy (moves . filtered ((> 1) . length))
+
+allHolographicCardsWithWetAura =
+  deck
+    ^.. folded
+      . filtered _holo
+      . filteredBy (aura . only Wet)
+      . name
+
+sumOfAttackPowerForNonLeafyCards =
+  sumOf
+    ( folded
+        . filteredBy (aura . filtered (/= Leafy))
+        . moves
+        . folded
+        . movePower
+    )
+    deck
