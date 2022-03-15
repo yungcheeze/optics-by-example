@@ -36,6 +36,7 @@ library
       Chapter6.FoldActions
       Chapter6.FoldsIntro
       Chapter6.HigherOrderFolds
+      Chapter7.Traversals
       OpticsByExample
   other-modules:
       Paths_optics_by_example
